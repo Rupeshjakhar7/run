@@ -1,0 +1,10 @@
+FROM centos-latest
+RUN yum install httpd zip unzip -y
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page288/meetup.zip /var/www/html
+WORKDIR /var/www/html
+RUN unzip meetup.zip
+RUN rm -rf meetup.zip
+    cp -rf meetup/* . &&\
+    rm -rf meetup &&\
+EXPOSE 80
+CMD  ["/usr/sbin/httpd", "-D", ""FOREGROUND"]
